@@ -1,0 +1,31 @@
+-- Authors Table
+CREATE TABLE authors (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP   
+);
+
+-- Categories Table
+CREATE TABLE categories (
+    id SERIAL PRIMARY KEY,
+    category VARCHAR(255) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Books Table
+CREATE TABLE books (
+    id SERIAL PRIMARY KEY,
+    author_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    publication_year INT NOT NULL,
+    isbn BIGINT UNIQUE NOT NULL,
+    category_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
+);
