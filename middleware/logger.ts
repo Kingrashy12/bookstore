@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import fs from "fs";
 import path from "path";
 
-// Define an interface for the error object
 interface ErrorWithContext extends Error {
   context?: string;
 }
@@ -10,13 +9,13 @@ interface ErrorWithContext extends Error {
 // Logger function
 const logger = (error: ErrorWithContext, context: string = ""): void => {
   const timestamp = new Date().toLocaleString("en-US", {
-    weekday: "short", // 'Mon', 'Tue', etc.
+    weekday: "short",
 
-    month: "short", // 'Jan', 'Feb', etc.
-    day: "2-digit", // '15'
-    hour: "2-digit", // '06'
-    minute: "2-digit", // '20'
-    hour12: true, // 'AM/PM'
+    month: "short",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
   });
 
   // Create an error message
